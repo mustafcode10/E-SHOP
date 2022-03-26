@@ -20,10 +20,11 @@ const ProductContainer = () => {
       <Text>Product Container</Text>
       <View style={{ marginTop: 100 }}>
         <FlatList
-          horizontal
+          numColumns={2}
+         
           data={products}
-          keyExtractor={(item) => item.name}
-          renderItem={({ item }) => <ProductList item={item} key={item.name}/>}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => <ProductList item={item} key={item.id}/>}
         />
       </View>
     </View>

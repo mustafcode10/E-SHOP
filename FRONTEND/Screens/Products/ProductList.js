@@ -1,14 +1,28 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Dimensions
+} from "react-native";
 
-const ProductList = ({item}) => {
+var { width} = Dimensions.get('window');
+
+import ProductCard from './ProductCard';
+
+const ProductList = (props) => {
+    const {item} = props;
   return (
-    <View>
-      <Text>{item.name}</Text>
-    </View>
-  )
-}
+    <TouchableOpacity style={{width: '50%'}} >
+      <View style={{width: width / 2, backgroundColor: "gainsboro"}}>
+        <ProductCard {...item}/>
+      </View>
+    
+    </TouchableOpacity>
+  );
+};
 
-export default ProductList
+export default ProductList;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});
