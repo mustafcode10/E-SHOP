@@ -13,21 +13,22 @@ import { SearchBar } from "react-native-elements";
 import { Ionicons } from "react-native-vector-icons";
 
 import ProductList from "./ProductList";
+import SearchedProducts from './SearchedProducts';
 const data = require("./../../assets/data/products.json");
 var { width } = Dimensions.get("window");
 
 const ProductContainer = () => {
   const [products, setProducts] = useState([]);
-  const [productsFilter, setProductsFilter] = useState([]);
+  const [productsFiltered, setProductsFiltered] = useState([]);
   useEffect(() => {
     setProducts(data);
-    setProductsFilter(data);
+    setProductsFiltered(data);
     return () => {
       setProducts([]);
     }
   },[]);
   return (
-    <View>
+    <View >
       {/* <SearchBar
         placeholder="Type Here..."
       /> */}
@@ -57,6 +58,7 @@ const ProductContainer = () => {
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => <ProductList item={item} key={item.id} />}
         />
+     
       </View>
     </View>
   );
@@ -65,5 +67,6 @@ const ProductContainer = () => {
 export default ProductContainer;
 
 const styles = StyleSheet.create({
+
  
 });
