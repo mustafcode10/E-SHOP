@@ -5,7 +5,7 @@ const SearchedProducts = (props) => {
   const { productsFiltered } = props;
   return (
     <View>
-      <Text>SearchedProducts</Text>
+      {/* <Text>SearchedProducts</Text> */}
       {productsFiltered.length > 0 ? (
         productsFiltered.map((item) => (
           <View key={item._id.$oid}>

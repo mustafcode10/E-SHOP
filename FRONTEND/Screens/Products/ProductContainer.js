@@ -16,6 +16,7 @@ import { Ionicons } from "react-native-vector-icons";
 
 import ProductList from "./ProductList";
 import SearchedProducts from "./SearchedProducts";
+import Banner from './../../Shared/Banner';
 const data = require("./../../assets/data/products.json");
 var { width } = Dimensions.get("window");
 
@@ -47,8 +48,7 @@ const ProductContainer = () => {
     setFocus(false);
   };
   return (
-    <ScrollView style={styles.container}>
-      <View >
+      <View style={styles.container} >
         <View
           style={{
             flexDirection: "row",
@@ -59,6 +59,7 @@ const ProductContainer = () => {
             alignItems: "center",
             borderRadius: width / 2,
             padding: 5,
+            marginBottom: 15,
           }}
         >
           <Ionicons name="ios-search" size={25} color="black" />
@@ -83,8 +84,10 @@ const ProductContainer = () => {
             productsFiltered={productsFiltered}
           />
         ) : (
+          <ScrollView>
           <View >
-            <Text>Product Container</Text>
+            {/* <Text>Product Container</Text> */}
+            <Banner />
             <FlatList
               numColumns={2}
               data={products}
@@ -94,9 +97,9 @@ const ProductContainer = () => {
               )}
             />
           </View>
+          </ScrollView>
         )}
       </View>
-    </ScrollView>
   );
 };
 
