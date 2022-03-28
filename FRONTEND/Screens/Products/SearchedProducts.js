@@ -29,7 +29,7 @@ const SearchedProducts = (props) => {
       ) : (
         <View>
           <Text style={{ alignSelf: "center", fontSize: 18 }}>
-            No products found
+            No products match the search criteria.
           </Text>
         </View>
       )}
