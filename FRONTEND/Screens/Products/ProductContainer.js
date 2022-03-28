@@ -47,8 +47,8 @@ const ProductContainer = () => {
     setFocus(false);
   };
   return (
-    <ScrollView>
-      <View>
+    <ScrollView style={styles.container}>
+      <View >
         <View
           style={{
             flexDirection: "row",
@@ -83,7 +83,7 @@ const ProductContainer = () => {
             productsFiltered={productsFiltered}
           />
         ) : (
-          <View style={{ marginTop: 100 }}>
+          <View >
             <Text>Product Container</Text>
             <FlatList
               numColumns={2}
@@ -102,4 +102,9 @@ const ProductContainer = () => {
 
 export default ProductContainer;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: 50,
+  }
+});

@@ -17,11 +17,12 @@ export default Header
 
 const styles = StyleSheet.create({
     header: {
-        width: '100%',
+        width: 30 ,
+        height: 50,
         flexDirection: 'row',
         alignContent: 'center',
         justifyContent: 'center',
         padding: 20,
-        marginTop: 160 // Todo Delete
+        marginTop: 20 // Todo Delete
     }
 })
