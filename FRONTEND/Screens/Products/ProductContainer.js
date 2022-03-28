@@ -9,6 +9,7 @@ import {
   Dimensions,
   SafeAreaView,
   ScrollView,
+  TouchableOpacity,
 } from "react-native";
 import { SearchBar } from "react-native-elements";
 import { Ionicons } from "react-native-vector-icons";
@@ -48,9 +49,6 @@ const ProductContainer = () => {
   return (
     <ScrollView>
       <View>
-        {/* <SearchBar
-        placeholder="Type Here..."
-      /> */}
         <View
           style={{
             flexDirection: "row",
@@ -66,15 +64,23 @@ const ProductContainer = () => {
           <Ionicons name="ios-search" size={25} color="black" />
           <TextInput
             placeholder="Search"
-            style={{ fontSize: 15, fontWeight: "bold", padding: 5 }}
+            style={{ fontSize: 18, padding: 5 }}
             onChangeText={(text) => searchProduct(text)}
             onFocus={openList}
           />
+          {focus == true ? (
+            <TouchableOpacity onPress={onBlur}>
+              <Ionicons
+                name="close"
+                size={25}
+                style={{ color: "red", marginLeft: 280 }}
+              />
+            </TouchableOpacity>
+          ) : null}
         </View>
         {focus == true ? (
           <SearchedProducts
             productsFiltered={productsFiltered}
-            onBlur={onBlur}
           />
         ) : (
           <View style={{ marginTop: 100 }}>

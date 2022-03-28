@@ -1,28 +1,59 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, Image } from "react-native";
+import React from "react";
 
 const SearchedProducts = (props) => {
-    const {productsFiltered} = props;
+  const { productsFiltered } = props;
   return (
     <View>
       <Text>SearchedProducts</Text>
       {productsFiltered.length > 0 ? (
-          productsFiltered.map((item, index) => (
-              <View key={index}>
-                    <Text>{item.name}</Text>
+        productsFiltered.map((item) => (
+          <View key={item._id.$oid}>
+            <View style={styles.listItem}>
+              <Image
+                style={styles.image}
+                resizeMode="contain"
+                source={{
+                  uri: item.image
+                    ? item.image
+                    : "https://cdn.pixabay.com/photo/2012/04/01/17/29/box-23649_960_720.png",
+                }}
+              />
+              <View>
+                <Text style={styles.title}>{item.name}</Text>
+                <Text>{item.description}</Text>
               </View>
-          )
-
-          )
-      ): (
-          <View>
-              <Text>No products found</Text>
+            </View>
           </View>
+        ))
+      ) : (
+        <View>
+          <Text style={{ alignSelf: "center", fontSize: 18 }}>
+            No products found
+          </Text>
+        </View>
       )}
     </View>
-  )
-}
+  );
+};
 
-export default SearchedProducts
+export default SearchedProducts;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  listItem: {
+    flexDirection: "row",
+    padding: 5,
+    margin: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: "#add8e6",
+  },
+  image: {
+    width: 50,
+    height: 50,
+    marginRight: 5,
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+});
