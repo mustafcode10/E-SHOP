@@ -22,7 +22,7 @@ import CategoryFilter from "./CategoryFilter";
 const data = require("./../../assets/data/products.json");
 const productsCategories = require("./../../assets/data/categories.json");
 
-var { width } = Dimensions.get("window");
+var { width, height } = Dimensions.get("window");
 
 const ProductContainer = () => {
   const [products, setProducts] = useState([]);
@@ -38,6 +38,7 @@ const ProductContainer = () => {
     setProductsFiltered(data);
     setFocus(false);
     setCategories(productsCategories);
+    setProductsCtg(data);
     setActive(-1);
     setIntialState(data);
     return () => {
@@ -67,11 +68,11 @@ const ProductContainer = () => {
     {
       ctg === "all"
         ? [setProductsCtg(intialState), setActive(true)]
-        : [setProductsCtg(products.filter((item) => item.category.oid === ctg))];
+        : [setProductsCtg(products.filter((i) =>  i.category.$oid === ctg), setActive(true))];
     }
   };
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View
         style={{
           flexDirection: "row",
@@ -121,30 +122,21 @@ const ProductContainer = () => {
                 setActive={setActive}
               />
             </View>
-
-            {/* <FlatList
-              numColumns={2}
-              data={products}
-              keyExtractor={(item) => item.id}
-              renderItem={({ item }) => (
-                <ProductList item={item} key={item.id} />
-              )}
-            /> */}
             {productsCtg.length > 0 ? (
-              <>
+              <View style={styles.listContainer}>
               {productsCtg.map((item) => (
                 <ProductList item={item} key={item._id.$oid} />
               ))}
-              </>
+              </View>
             ): (
-              <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
-              <Text>No Products</Text>
+              <View style={[styles.center, {height:height / 2, }]}>
+              <Text >No Products found</Text>
                 </View>
             )}
           </View>
         </ScrollView>
       )}
-    </View>
+    </ScrollView>
   );
 };
 
@@ -155,4 +147,16 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 50,
   },
+  listContainer: {
+    // height: height,
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "flex-start",
+    flexWrap: "wrap",
+    backgroundColor: "gainsboro",
+  },
+  center: {
+      justifyContent: 'center',
+      alignItems: 'center'
+  }
 });
