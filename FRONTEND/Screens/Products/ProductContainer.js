@@ -68,7 +68,12 @@ const ProductContainer = (props) => {
     {
       ctg === "all"
         ? [setProductsCtg(intialState), setActive(true)]
-        : [setProductsCtg(products.filter((i) =>  i.category.$oid === ctg), setActive(true))];
+        : [
+            setProductsCtg(
+              products.filter((i) => i.category.$oid === ctg),
+              setActive(true)
+            ),
+          ];
     }
   };
   return (
@@ -104,15 +109,18 @@ const ProductContainer = (props) => {
         ) : null}
       </View>
       {focus == true ? (
-        <SearchedProducts productsFiltered={productsFiltered} />
+        <SearchedProducts
+          navigation={props.navigation}
+          productsFiltered={productsFiltered}
+        />
       ) : (
         <ScrollView>
           <View>
             {/* <Text>Product Container</Text> */}
             <View>
-            <Banner />
+              <Banner />
             </View>
-          
+
             <View>
               <CategoryFilter
                 categories={categories}
@@ -124,18 +132,18 @@ const ProductContainer = (props) => {
             </View>
             {productsCtg.length > 0 ? (
               <View style={styles.listContainer}>
-              {productsCtg.map((item) => (
-                <ProductList 
-                navigation={props.navigation}
-                 item={item} 
-                 key={item._id.$oid} 
-                 />
-              ))}
+                {productsCtg.map((item) => (
+                  <ProductList
+                    navigation={props.navigation}
+                    item={item}
+                    key={item._id.$oid}
+                  />
+                ))}
               </View>
-            ): (
-              <View style={[styles.center, {height:height / 2, }]}>
-              <Text >No Products found</Text>
-                </View>
+            ) : (
+              <View style={[styles.center, { height: height / 2 }]}>
+                <Text>No Products found</Text>
+              </View>
             )}
           </View>
         </ScrollView>
@@ -160,7 +168,7 @@ const styles = StyleSheet.create({
     backgroundColor: "gainsboro",
   },
   center: {
-      justifyContent: 'center',
-      alignItems: 'center'
-  }
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });

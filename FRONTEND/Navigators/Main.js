@@ -18,7 +18,7 @@ const Main = () => {
         keybordHidesOnTap: true,
         showLabel: false,
         activeTintColor: '#e91e63',
-        inactiveTintColor: '#000',
+        // inactiveTintColor: '#000',
         
 
     }}

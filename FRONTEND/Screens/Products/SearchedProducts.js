@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import React from "react";
 
 const SearchedProducts = (props) => {
@@ -8,9 +8,13 @@ const SearchedProducts = (props) => {
       {/* <Text>SearchedProducts</Text> */}
       {productsFiltered.length > 0 ? (
         productsFiltered.map((item) => (
-          <View key={item._id.$oid}>
+          <TouchableOpacity
+          onPress={()=> props.navigation.navigate("Product Details", {item: item})}
+          >
+             <View key={item._id.$oid}>
             <View style={styles.listItem}>
               <Image
+              
                 style={styles.image}
                 resizeMode="contain"
                 source={{
@@ -25,6 +29,9 @@ const SearchedProducts = (props) => {
               </View>
             </View>
           </View>
+
+          </TouchableOpacity>
+         
         ))
       ) : (
         <View>
