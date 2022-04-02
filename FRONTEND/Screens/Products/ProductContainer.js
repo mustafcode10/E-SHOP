@@ -24,7 +24,7 @@ const productsCategories = require("./../../assets/data/categories.json");
 
 var { width, height } = Dimensions.get("window");
 
-const ProductContainer = () => {
+const ProductContainer = (props) => {
   const [products, setProducts] = useState([]);
   const [productsFiltered, setProductsFiltered] = useState([]);
   const [focus, setFocus] = useState();
@@ -125,7 +125,11 @@ const ProductContainer = () => {
             {productsCtg.length > 0 ? (
               <View style={styles.listContainer}>
               {productsCtg.map((item) => (
-                <ProductList item={item} key={item._id.$oid} />
+                <ProductList 
+                navigation={props.navigation}
+                 item={item} 
+                 key={item._id.$oid} 
+                 />
               ))}
               </View>
             ): (
