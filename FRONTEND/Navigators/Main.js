@@ -6,6 +6,7 @@ import { FontAwesome } from "react-native-vector-icons";
 //Stacks
 import HomeNavigator from './HomeNavigator';
 import CartNavigator from './CartNavigator';
+import CartIcon from './../Shared/CartIcon'
 
 const Tab = createBottomTabNavigator();
 
@@ -42,7 +43,11 @@ const Main = () => {
                 // tabBarLabel: 'Cart',
                 headerShown: false,
                 tabBarIcon: ({ color }) => (
-                    <FontAwesome name="shopping-cart" color={color} size={35}  />
+                  <View>
+                        <FontAwesome name="shopping-cart" color={color} size={35}  />
+                        <CartIcon />
+                  </View>
+                
                 )
             }}
           />
