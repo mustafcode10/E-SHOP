@@ -16,7 +16,8 @@ import * as actions from "./../../Redux/Actions/cartActions";
 const { height, width } = Dimensions.get("window");
 
 const Cart = (props) => {
-  const total = 0;
+  let total = 0;
+   props.cartItems.forEach((cart) => total += cart.product.price)
   return (
     <>
       {props.cartItems.length ? (
