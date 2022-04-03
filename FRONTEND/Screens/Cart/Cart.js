@@ -48,7 +48,7 @@ const Cart = (props) => {
             style={styles.bottomContainer}
           >
             <Text style={styles.total}> $ {total}</Text>
-            <Button title="Clear" />
+            <Button title="Clear" onPress={()=> props.clearCart()} />
             <Button title="Checkout" onPress={()=> props.navigation.navigate("Checkout")} />
           </View>
         </>
@@ -71,7 +71,13 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(Cart);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    clearCart: () => dispatch(actions.clearCart()),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);
 
 const styles = StyleSheet.create({
   container: {
