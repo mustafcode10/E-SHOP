@@ -2,6 +2,7 @@ import {
   Text,
   View,
   Image,
+  Button,
   Dimensions,
   StyleSheet,
   ScrollView,
@@ -15,35 +16,41 @@ import * as actions from "./../../Redux/Actions/cartActions";
 const { height, width } = Dimensions.get("window");
 
 const Cart = (props) => {
+  const total = 0;
   return (
-    <> 
- 
+    <>
       {props.cartItems.length ? (
-           <ScrollView>
-        <View>
-         
-          <Text style={styles.titleStyle}>Cart </Text>
-          {props.cartItems.map((data) => (
-            <>
-              <View
-                style={styles.listItem}
-              >
-                <Image
-                  style={styles.image}
-                  source={{
-                    uri: data.product.image
-                      ? data.product.image
-                      : "https://cdn.pixabay.com/photo/2012/04/01/17/29/box-23649_960_720.png",
-                  }}
-                  resizeMode="center"
-                />
-                <Text style={styles.productName}>{data.product.name}</Text>
-                <Text style={styles.price}>${data.product.price}</Text>
-              </View>
-            </>
-          ))}
-        </View>
-        </ScrollView>
+        <>
+          <ScrollView style={styles.container}>
+            <View key={Math.random()}>
+              <Text style={styles.titleStyle}>Cart </Text>
+              {props.cartItems.map((data) => (
+                <>
+                  <View style={styles.listItem}>
+                    <Image
+                      style={styles.image}
+                      source={{
+                        uri: data.product.image
+                          ? data.product.image
+                          : "https://cdn.pixabay.com/photo/2012/04/01/17/29/box-23649_960_720.png",
+                      }}
+                      resizeMode="center"
+                    />
+                    <Text style={styles.productName}>{data.product.name}</Text>
+                    <Text style={styles.price}>${data.product.price}</Text>
+                  </View>
+                </>
+              ))}
+            </View>
+          </ScrollView>
+          <View
+            style={styles.bottomContainer}
+          >
+            <Text style={styles.total}> $ {total}</Text>
+            <Button title="Clear" />
+            <Button title="Checkout" />
+          </View>
+        </>
       ) : (
         <View style={styles.emptyContainer}>
           <Text style={styles.textStyle}>Looks like your cart is empty.</Text>
@@ -66,13 +73,16 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, null)(Cart);
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    position: "relative",
+    height: height,
+  },
   listItem: {
     flexDirection: "row",
     justifyContent: "space-between",
     margin: 5,
     borderBottomWidth: 0.2,
-    padding: 5
+    padding: 5,
   },
   emptyContainer: {
     height: height,
@@ -93,15 +103,24 @@ const styles = StyleSheet.create({
     height: 70,
     resizeMode: "center",
   },
-  productName:{
+  productName: {
     fontSize: 14,
     fontWeight: "bold",
-
   },
   price: {
     fontSize: 14,
     fontWeight: "bold",
-    color:"blue"
-  }
-  
+    color: "blue",
+  },
+  bottomContainer: {
+    flexDirection: "row",
+     justifyContent: "space-between",
+    bottom: 0,
+    margin: 10,
+  },
+  total: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "red",
+  },
 });
