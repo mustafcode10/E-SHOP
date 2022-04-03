@@ -48,7 +48,7 @@ const Cart = (props) => {
           >
             <Text style={styles.total}> $ {total}</Text>
             <Button title="Clear" />
-            <Button title="Checkout" />
+            <Button title="Checkout" onPress={()=> props.navigation.navigate("Checkout")} />
           </View>
         </>
       ) : (

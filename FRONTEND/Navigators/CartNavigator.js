@@ -1,9 +1,12 @@
-import { StyleSheet, Text, View } from 'react-native'
+
 import React from 'react'
 
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Cart from "./../Screens/Cart/Cart";
+// import Checkout from './../Screens/Cart/Checkout.js/Checkout';
+import Checkout from './../Screens/Cart/Checkout/Checkout'
+
 const Stack = createStackNavigator();
 
 const MyStack = () => {
@@ -11,6 +14,12 @@ const MyStack = () => {
         <Stack.Navigator>
         <Stack.Screen name="Cart"
             component={Cart}
+            options={{
+            headerShown: false
+            }}
+        />
+                <Stack.Screen name="Checkout"
+            component={Checkout}
             options={{
             headerShown: false
             }}
@@ -28,4 +37,3 @@ const CartNavigator = () => {
 
 export default CartNavigator
 
-const styles = StyleSheet.create({})
