@@ -1839,6 +1839,14 @@
   "resolved" "https://registry.npmjs.org/@react-navigation/elements/-/elements-1.3.3.tgz"
   "version" "1.3.3"
 
+"@react-navigation/material-top-tabs@^6.2.1":
+  "integrity" "sha512-fGy2+/7cUAyrZUPUhzKUttA4avK5Z2FrNk0LRI04hRlAVqs5DYpnaQGkegGeOGwKmnxaVCjCVPr+KoEroyqduw=="
+  "resolved" "https://registry.npmjs.org/@react-navigation/material-top-tabs/-/material-top-tabs-6.2.1.tgz"
+  "version" "6.2.1"
+  dependencies:
+    "color" "^3.1.3"
+    "warn-once" "^0.1.0"
+
 "@react-navigation/native@^6.0.0", "@react-navigation/native@^6.0.10":
   "integrity" "sha512-H6QhLeiieGxNcAJismIDXIPZgf1myr7Og8v116tezIGmincJTOcWavTd7lPHGnMMXaZg94LlVtbaBRIx9cexqw=="
   "resolved" "https://registry.npmjs.org/@react-navigation/native/-/native-6.0.10.tgz"
@@ -5601,6 +5609,11 @@
     "prop-types" "^15.6.2"
     "react-native-iphone-x-helper" "^1.0.3"
 
+"react-native-pager-view@*", "react-native-pager-view@>= 4.0.0":
+  "integrity" "sha512-5NssD840wFCuOL4B1ZRiRADvt+Vx2Dgify4SmAUqHXCx03yiGPnRWmFjYXyQeK6gq/8VY+gPGE4bTy9ahzBbDw=="
+  "resolved" "https://registry.npmjs.org/react-native-pager-view/-/react-native-pager-view-5.4.15.tgz"
+  "version" "5.4.15"
+
 "react-native-ratings@8.0.4":
   "integrity" "sha512-Xczu5lskIIRD6BEdz9A0jDRpEck/SFxRqiglkXi0u67yAtI1/pcJC76P4MukCbT8K4BPVl+42w83YqXBoBRl7A=="
   "resolved" "https://registry.npmjs.org/react-native-ratings/-/react-native-ratings-8.0.4.tgz"
@@ -5658,6 +5671,11 @@
   "version" "1.6.0"
   dependencies:
     "prop-types" "^15.5.10"
+
+"react-native-tab-view@^3.1.1", "react-native-tab-view@>= 3.0.0":
+  "integrity" "sha512-M5pRN6utQfytKWoKlKVzg5NbkYu308qNoW1khGTtEOTs1k14p2dHJ/BWOJoJYHKbPVUyZldbG9MFT7gUl4YHnw=="
+  "resolved" "https://registry.npmjs.org/react-native-tab-view/-/react-native-tab-view-3.1.1.tgz"
+  "version" "3.1.1"
 
 "react-native-vector-icons@>7.0.0":
   "integrity" "sha512-2AHZ/h9d/+rC0odz+OwbGNlc1Lik/pHhSixn4HfC8RtQ8CxfSBZ6gg7bTLcZhdSvZN+ZEGi30Fj+ZnOSQy+smg=="
