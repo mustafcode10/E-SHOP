@@ -7,49 +7,77 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  FlatList,
 } from "react-native";
 import React from "react";
 import { connect } from "react-redux";
 import { FontAwesome } from "react-native-vector-icons";
 import * as actions from "./../../Redux/Actions/cartActions";
+import { SwipeListView } from "react-native-swipe-list-view";
+import CartItem from "./CartItem";
 
 const { height, width } = Dimensions.get("window");
 
+const data = [
+  {
+    id: 1,
+    name: "Product 1",
+  },
+  {
+    id: 2,
+    name: "Product 2",
+  },
+];
+
 const Cart = (props) => {
+  console.log('props', props)
   let total = 0;
-   props.cartItems.forEach((cart) => total += cart.product.price)
+  props.cartItems.forEach((cart) => (total += cart.product.price));
   return (
     <>
       {props.cartItems.length ? (
         <>
           <ScrollView style={styles.container}>
-            <View key={Math.random()}>
+            <View>
               <Text style={styles.titleStyle}>Cart </Text>
-              {props.cartItems.map((data) => (
+              {/* {props.cartItems.map((data) => (
                 <>
-                  <View style={styles.listItem}>
-                    <Image
-                      style={styles.image}
-                      source={{
-                        uri: data.product.image
-                          ? data.product.image
-                          : "https://cdn.pixabay.com/photo/2012/04/01/17/29/box-23649_960_720.png",
-                      }}
-                      resizeMode="center"
-                    />
-                    <Text style={styles.productName}>{data.product.name}</Text>
-                    <Text style={styles.price}>${data.product.price}</Text>
-                  </View>
+                  <CartItem item={data} />
                 </>
-              ))}
+              ))} */}
+              <SwipeListView
+                data={props.cartItems}
+                renderItem={(data) => (
+                  <CartItem item={data.item} />
+                )}
+                renderHiddenItem={(data) => (
+                  <View style={styles.hiddenContainer}>
+                    <TouchableOpacity 
+                    style={styles.hiddenButton}
+                    onPress={() => props.removeFromCart(data.item)}
+                    >
+                      <FontAwesome name="trash" color={"red"} size={30} />
+                    </TouchableOpacity>
+                  </View>
+                )}
+                disableRightSwipe={true}
+                previewOpenDelay={3000}
+                friction={1000}
+                tension={40}
+                leftOpenValue={75}
+                stopLeftSwipe={75}
+                rightOpenValue={-75}
+              />
             </View>
           </ScrollView>
-          <View
-            style={styles.bottomContainer}
-          >
+
+          <View style={styles.bottomContainer}>
             <Text style={styles.total}> $ {total}</Text>
-            <Button title="Clear" onPress={()=> props.clearCart()} />
-            <Button title="Checkout" onPress={()=> props.navigation.navigate("Checkout")} />
+            <Button title="Clear" onPress={() => props.clearCart()} />
+            <Button
+              title="Checkout"
+              onPress={() => props.navigation.navigate("Checkout")}
+            />
           </View>
         </>
       ) : (
@@ -74,8 +102,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     clearCart: () => dispatch(actions.clearCart()),
-  }
-}
+    removeFromCart: (item) => dispatch(actions.removeFromCart(item)),
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);
 
@@ -121,7 +150,7 @@ const styles = StyleSheet.create({
   },
   bottomContainer: {
     flexDirection: "row",
-     justifyContent: "space-between",
+    justifyContent: "space-between",
     bottom: 0,
     margin: 10,
   },
@@ -130,4 +159,37 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "red",
   },
+  hiddenContainer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    flexDirection: 'row'
+  },
+  hiddenButton: {
+    // backgroundColor: 'red',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    paddingRight: 25,
+    height: 70,
+    width: width / 5,
+    
+  }
 });
+
+{
+  /* <SwipeListView
+data={data}
+renderItem={(data, rowMap) => (
+  <TouchableOpacity>
+    <Text>I am {data.item.name} in a SwipeListView</Text>
+  </TouchableOpacity>
+)}
+renderHiddenItem={ (data, rowMap) => (
+  <View >
+      <Text>Left</Text>
+      <Text>Right</Text>
+  </View>
+)}
+leftOpenValue={75}
+rightOpenValue={-75}
+/> */
+}
