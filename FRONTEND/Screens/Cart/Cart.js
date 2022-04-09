@@ -30,7 +30,7 @@ const data = [
 ];
 
 const Cart = (props) => {
-  console.log('props', props)
+ 
   let total = 0;
   props.cartItems.forEach((cart) => (total += cart.product.price));
   return (
@@ -175,21 +175,4 @@ const styles = StyleSheet.create({
   }
 });
 
-{
-  /* <SwipeListView
-data={data}
-renderItem={(data, rowMap) => (
-  <TouchableOpacity>
-    <Text>I am {data.item.name} in a SwipeListView</Text>
-  </TouchableOpacity>
-)}
-renderHiddenItem={ (data, rowMap) => (
-  <View >
-      <Text>Left</Text>
-      <Text>Right</Text>
-  </View>
-)}
-leftOpenValue={75}
-rightOpenValue={-75}
-/> */
-}
+
