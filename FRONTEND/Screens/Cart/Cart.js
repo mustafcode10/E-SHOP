@@ -18,16 +18,7 @@ import CartItem from "./CartItem";
 
 const { height, width } = Dimensions.get("window");
 
-const data = [
-  {
-    id: 1,
-    name: "Product 1",
-  },
-  {
-    id: 2,
-    name: "Product 2",
-  },
-];
+
 
 const Cart = (props) => {
 
@@ -40,11 +31,6 @@ const Cart = (props) => {
           <ScrollView style={styles.container}>
             <View>
               <Text style={styles.titleStyle}>Cart </Text>
-              {/* {props.cartItems.map((data) => (
-                <>
-                  <CartItem item={data} />
-                </>
-              ))} */}
               <SwipeListView
                 data={props.cartItems}
                 renderItem={(data) => (
