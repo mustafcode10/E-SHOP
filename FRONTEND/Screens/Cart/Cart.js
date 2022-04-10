@@ -30,7 +30,7 @@ const data = [
 ];
 
 const Cart = (props) => {
- 
+
   let total = 0;
   props.cartItems.forEach((cart) => (total += cart.product.price));
   return (
