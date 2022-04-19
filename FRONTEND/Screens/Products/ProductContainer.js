@@ -18,6 +18,11 @@ import ProductList from "./ProductList";
 import SearchedProducts from "./SearchedProducts";
 import Banner from "./../../Shared/Banner";
 import CategoryFilter from "./CategoryFilter";
+
+import baseURL from "./../../assets/common/baseUrl";
+console.log("baseURL", baseURL);
+import axios from "axios";
+// const baseUrl = 'https://reqres.in';
 ///////////////////////////////////////////
 const data = require("./../../assets/data/products.json");
 const productsCategories = require("./../../assets/data/categories.json");
@@ -34,13 +39,28 @@ const ProductContainer = (props) => {
   const [intialState, setIntialState] = useState([]);
 
   useEffect(() => {
-    setProducts(data);
-    setProductsFiltered(data);
+    // setProducts(data);
+    // setProductsFiltered(data);
+    // setProductsCtg(data);
+    // setIntialState(data);
     setFocus(false);
     setCategories(productsCategories);
-    setProductsCtg(data);
     setActive(-1);
-    setIntialState(data);
+
+    // Invoking get method to perform a GET request
+    axios
+      .get(`${baseURL}products`)
+      .then((res) => {
+        // console.log("response data", response.data);
+        setProducts(res.data);
+        setProductsFiltered(res.data);
+        setProductsCtg(res.data);
+        setIntialState(res.data);
+      })
+      .catch((error) => {
+        console.log("error api", error);
+      });
+
     return () => {
       setProducts([]);
       setProductsFiltered([]);
