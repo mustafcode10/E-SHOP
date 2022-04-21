@@ -44,10 +44,11 @@ const ProductContainer = (props) => {
     // setProductsCtg(data);
     // setIntialState(data);
     setFocus(false);
-    setCategories(productsCategories);
+    // setCategories(productsCategories);
     setActive(-1);
 
     // Invoking get method to perform a GET request
+    // Products
     axios
       .get(`${baseURL}products`)
       .then((res) => {
@@ -58,8 +59,18 @@ const ProductContainer = (props) => {
         setIntialState(res.data);
       })
       .catch((error) => {
-        console.log("error api", error);
+        console.log("call error API", error);
       });
+
+    // Categories
+    axios
+    .get(`${baseURL}categories`)
+    .then((res) => {
+      console.log("response data categories", res.data);
+      setCategories(res.data);
+    }).catch((error) => {
+      console.log("call API error", error);
+    })
 
     return () => {
       setProducts([]);
@@ -90,7 +101,7 @@ const ProductContainer = (props) => {
         ? [setProductsCtg(intialState), setActive(true)]
         : [
             setProductsCtg(
-              products.filter((i) => i.category.$oid === ctg),
+              products.filter((i) => i.category._id === ctg),
               setActive(true)
             ),
           ];
